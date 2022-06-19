@@ -6,9 +6,11 @@ const FormWithFormik = () => {
 
     return (
         <Formik
-            initialValues={{ name: "", email: "", message: "" }}
-            onSubmit={(values) => {
+            initialValues={{ name: "", email: "", message: "", campaigns: "0", weeklyOrMonthly: "" }}
+            onSubmit={async (values, bag) => {
+                await new Promise((r) => setTimeout(r, 500));
                 console.log(values);
+                console.log(bag);
             }}
             validationSchema={validations}>
             {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
@@ -33,6 +35,24 @@ const FormWithFormik = () => {
                             onChange={handleChange} onBlur={handleBlur}></textarea>
                         {errors.message && touched.message && errors.message}
                     </div>
+                    <div>
+                        <label htmlFor='campaigns'>Message</label>
+                        <input name="campaigns" type="radio" value="0" onChange={handleChange} />Hayır
+                        <input name="campaigns" type="radio" value="1" onChange={handleChange} />Evet
+                        {errors.campaigns && touched.campaigns && errors.campaigns}
+                    </div>
+                    {values.campaigns === "1" && 
+                    <div>
+                        <label htmlFor='weeklyOrMonthly'>Weekly/Monthly</label>
+                        <select name="weeklyOrMonthly" value={values.weeklyOrMonthly} onChange={handleChange}>
+                            <option value="">Seçiniz</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+
+                        {errors.weeklyOrMonthly && touched.weeklyOrMonthly && errors.weeklyOrMonthly}
+                    </div>}
+
                     <div>
                         <button type='submit' disabled={isSubmitting}>Submit</button>
                     </div>
