@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import counterStore from "../store/counterStore";
 
 const Counter = (props) => {
-    const [counter, setCounter] = useState(0);
     const [amount, setAmount] = useState(1);
+
+    const increase = counterStore(state => state.increase);
+    const counter = counterStore(state => state.count);
 
     const amountRef = useRef(1)
 
@@ -10,7 +13,8 @@ const Counter = (props) => {
         console.log("Component Mount");
 
         const everySecond = setInterval(() => {
-            setAmount((prev) => prev + 1);
+            // setAmount((prev) => prev + 1);
+            increase();
         }, 1000);
 
         return () => {
@@ -31,7 +35,7 @@ const Counter = (props) => {
     return (
         <div style={{ textAlign: "center" }}>
             Counter: {counter}
-            <button onClick={() => { setCounter(counter + amount) }}> + </button>
+            {/* <button onClick={() => { setCounter(counter + amount) }}> + </button> */}
             <input ref={amountRef} onChange={() => { setAmount(++amountRef.current.value) }} ></input>
         </div>
 

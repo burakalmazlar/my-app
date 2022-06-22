@@ -3,15 +3,38 @@
 }
 
 html {
-  height: 100%;
   margin:0;
   overflow: hidden;
+  height: 100%;
+  width: 100%;
+  padding: 0;
 }
 
 body {
   margin:0;
   height: 100%;
+  padding: 0;
+  width: 100%;
 }
+
+body > div {
+  margin:0;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+/* div#root  *:first-child { margin-top: 0px } */
+
+.theme {
+  height: 100%;
+}
+.theme-dark {
+  background-color: rgb(155, 155, 155);
+ }
+ .theme-light {
+  background-color: rgb(229, 229, 229);
+ }
 
 .flex-container {
   display: flex;
@@ -29,4 +52,38 @@ body {
   margin: 2px;
   padding: 2px;
   text-align: center;
+  position: relative;
+  background-color: aqua;
+}
+
+.list-item__remove {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: crimson;
+  border-top: transparent;
+  border-right: transparent;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 0 4px 0 0;
+  font-weight: 900;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  margin:3px
+}
+
+ul > li > a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+ul > li > a:hover {
+  text-decoration: underline;
 }

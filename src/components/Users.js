@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+
 
 const Users = () => {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false);
+
+   
 
     useEffect(() => {
         setLoading(true);
@@ -65,7 +68,11 @@ const Users = () => {
             });
     }
 
-    return (
+    const removeUser = (userId) => {
+        setUsers(prev => prev.filter(u => u.id !== userId));
+    }
+
+    return (<>
         <div className='flex-container'>
             {
                 loading ? 'LOADING' :
@@ -73,12 +80,16 @@ const Users = () => {
                         return <div className='list-item' onClick={showDetail.bind(null, user.id)}
                             key={user.id}>
                             {/* <Link to={`/users/${user.id}`}> */}
-                                {user.name}
+                            {user.name}
                             {/* </Link> */}
+                            <button className='list-item__remove' onClick={removeUser.bind(null, user.id)}>X</button>
                         </div>
                     })
             }
+
         </div>
+       
+    </>
     )
 }
 

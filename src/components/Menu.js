@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import ThemeContext from '../context/ThemeContext';
 
 const Menu = () => {
+    const theme = useContext(ThemeContext);
     return (
-        <div>
+        <div style={{display:'flex',flexFlow:'row wrap',justifyContent:'space-between'}}>
             <ul style={{display:'flex',listStyle:'none'}}>
                 <li>
                     <Link to="/">Anasayfa</Link>
@@ -18,6 +20,7 @@ const Menu = () => {
                     <Link to="/">Çıkış</Link>
                 </li>
             </ul>
+            <button onClick={theme.toggleTheme}>{theme.theme}</button>
         </div>
     )
 }
