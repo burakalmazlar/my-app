@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Menu = () => {
     return (
         <div>
-            <ul>
+            <ul style={{display:'flex',listStyle:'none'}}>
                 <li>
                     <Link to="/">Anasayfa</Link>
                 </li>

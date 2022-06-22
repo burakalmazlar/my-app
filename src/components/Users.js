@@ -51,7 +51,7 @@ const Users = () => {
                     return prev.map((user) => {
                         let { id, name } = user;
                         if (id === userId) {
-                            name = data.name + " " + data.username + " " + data.email;
+                            name = data.name + "<hr/>" + data.username + "<br/> " + data.email;
                         }
                         return { id, name };
                     });
@@ -72,13 +72,12 @@ const Users = () => {
                     users && users.map((user, index) => {
                         return <div className='list-item' onClick={showDetail.bind(null, user.id)}
                             key={user.id}>
-                            <Link to={`/users/${user.id}`}>
+                            {/* <Link to={`/users/${user.id}`}> */}
                                 {user.name}
-                            </Link>
+                            {/* </Link> */}
                         </div>
                     })
             }
-            <button onClick={handleclick}>Add</button>
         </div>
     )
 }
